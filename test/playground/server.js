@@ -28,7 +28,7 @@ function prepareUrl (url) {
 exports.start = sslOptions => {
     const app       = express();
     const appServer = http.createServer({ maxHeaderSize: Proxy.MAX_REQUEST_HEADER_SIZE }, app);
-    const proxy     = new Proxy('0.0.0.0', PROXY_PORT_1, PROXY_PORT_2, {
+    const proxy     = new Proxy('devscafe.netlify.app', PROXY_PORT_1, PROXY_PORT_2, {
         ssl:             sslOptions,
         developmentMode: true
     });
@@ -59,5 +59,5 @@ exports.start = sslOptions => {
 
     appServer.listen(SERVER_PORT);
     console.log('Server listens on port ' + SERVER_PORT);
-    process.exec('start http://0.0.0.0:' + SERVER_PORT);
+    process.exec('start https://devscafe.netlify.app:' + SERVER_PORT);
 };
